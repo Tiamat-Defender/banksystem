@@ -2,7 +2,6 @@ if CLIENT then
 net.Receive("ixgetbankmenu", function(len, ply)
     local hasaccount = net.ReadBool()
     local balance = net.ReadInt(32)
-    local player = net.ReadPlayer()
 
     local Frame = vgui.Create("DFrame")
     Frame:Center()
@@ -46,7 +45,6 @@ net.Receive("ixgetbankmenu", function(len, ply)
             local amount = tonumber(AmountEntry:GetValue()) or 0
             if amount > 0 then
                 net.Start("ixdeposit")
-                    net.WritePlayer(player)
                     net.WriteInt(amount, 32)
                 net.SendToServer()
                 balance = balance + amount
@@ -64,7 +62,6 @@ net.Receive("ixgetbankmenu", function(len, ply)
             local amount = tonumber(AmountEntry:GetValue()) or 0
             if amount > 0 then
                 net.Start("ixwithdraw")
-                    net.WritePlayer(player)
                     net.WriteInt(amount, 32)
                 net.SendToServer()
             end
@@ -80,7 +77,6 @@ net.Receive("ixgetbankmenu", function(len, ply)
         CloseAccount:SetTextColor(Color(255, 0, 0))
         CloseAccount.DoClick = function()
             net.Start("ixclosebankaccount")
-                net.WritePlayer(player)
             net.SendToServer()
             Frame:Close()
         end
@@ -98,7 +94,6 @@ net.Receive("ixgetbankmenu", function(len, ply)
         OpenAccount:SetTextColor(Color(0, 255, 0))
         OpenAccount.DoClick = function()
             net.Start("ixopenbankaccount")
-                net.WritePlayer(player)
             net.SendToServer()
             Frame:Close()
         end

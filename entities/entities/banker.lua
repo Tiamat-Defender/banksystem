@@ -36,7 +36,6 @@ if SERVER then
         net.Start("ixgetbankmenu")
             net.WriteBool(character:GetData("isaccountopen", false))
             net.WriteInt(character:GetData("bankbalance", 0), 32)
-            net.WritePlayer(activator)
         net.Send(activator)
     end
 end

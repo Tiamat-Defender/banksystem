@@ -9,7 +9,7 @@ util.AddNetworkString("ixdeposit")
 util.AddNetworkString("ixgetbankmenu")
 
 net.Receive("ixopenbankaccount", function(len, ply)
-    local player = net.ReadPlayer()
+    local player = ply
     local character = player:GetCharacter()
 
     if not character then
@@ -36,7 +36,7 @@ net.Receive("ixopenbankaccount", function(len, ply)
 end)
 
 net.Receive("ixclosebankaccount", function(len, ply)
-    local player = net.ReadPlayer()
+    local player = ply
     local character = player:GetCharacter()
 
     if not character then
@@ -60,7 +60,7 @@ net.Receive("ixclosebankaccount", function(len, ply)
 end)
 
 net.Receive("ixdeposit", function(len, ply)
-    local player = net.ReadPlayer()
+    local player = ply
     local amount = net.ReadInt(32)
 
     local character = player:GetCharacter()
@@ -85,7 +85,7 @@ net.Receive("ixdeposit", function(len, ply)
 end)
 
 net.Receive("ixwithdraw", function(len, ply)
-    local player = net.ReadPlayer()
+    local player = ply
     local amount = net.ReadInt(32)
 
     local character = player:GetCharacter()
